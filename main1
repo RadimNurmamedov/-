@@ -1,0 +1,156 @@
+import java.util.Scanner;
+class Main {
+    public static int Lr1(int num1, int num2) {
+        return num1 % num2;
+    }
+    public static int Lr2(int num12, int num22) {
+        int n = (num12 * num22) / 2;
+        return n;
+    }
+    public static int Lr3(int chickens, int cows, int pigs) {
+        int animals = (chickens * 2) + (cows * 4) + (pigs * 4);
+        return animals;
+    }
+    public static String Lr4(float prob, float prize, float pay) {
+        String rezult;
+        if (prob * prize > pay)
+            rezult = "true";
+        else
+            rezult = "false";
+        return rezult;
+    }
+    public static String Lr5(float N, float a, float b) {
+        String rezult;
+        if (N == a + b)
+            rezult = "Сложение";
+        else if (N == a - b)
+            rezult = "Вычетание";
+        else if (N == a * b)
+            rezult = "Умножение";
+        else if (N == a / b)
+            rezult = "Деление";
+        else
+            rezult = "none";
+        return rezult;
+    }
+    public static int Lr6(char a) {
+        int rezult = (int) a;
+        return rezult;
+    }
+    public static int Lr7(int N) {
+        int result = 0;
+        for (int i = 1; i <= N; i++) {
+            result = result + i;
+        }
+        return result;
+    }
+    public static int Lr8(int a, int b) {
+        // Недопустимый треугольник
+        if (a <= 0 || b <= 0) {
+            System.out.print("Неверный формат");
+            return 0;
+        } else {
+            int c = a + b - 1;
+            return c;
+        }
+    }
+    public static int Lr9(int a) {
+        Scanner in = new Scanner(System.in);
+        int[] mas = new int[a];
+        int rezult = 0;
+        for (int i = 0; i < a; i++) {
+            System.out.print("Введите число: ");
+            mas[i] = in.nextInt();
+            rezult = rezult + (mas[i] * mas[i] * mas[i]);
+        }
+        
+        return rezult;
+    }
+
+    public static void Lr10(int a, int b, int c) {
+        int q = 0;
+        for (int i = 1; i < b; i++) {
+            q = a * 2;
+            a = q;
+        }
+        System.out.println((a % c) == 0);
+    }
+
+    public static void main(String[] args) 
+    {
+        Scanner in = new Scanner(System.in);
+        System.out.print("Задача 1: \n");
+        System.out.print("Введите первое число: ");
+        int num11 = in.nextInt();
+        System.out.print("Введите второе число: ");
+        int num21 = in.nextInt();
+        int rezult = Lr1(num11, num21);
+        System.out.printf("Остаток деления %d на %d = %d", num11, num21, rezult);
+        System.out.print("\n Задача 2: \n");
+        System.out.print("Введите основание: ");
+        int num12 = in.nextInt();
+        System.out.print("Введите высоту: ");
+        int num22 = in.nextInt();
+        int result = Lr2(num12, num22);
+        System.out.printf("Площадь треугольника = %d", result);
+        System.out.print("\n Задача 3: \n");
+        System.out.print("chickens: ");
+        int chickens = in.nextInt();
+        System.out.print("cows: ");
+        int cows = in.nextInt();
+        System.out.print("pigs: ");
+        int pigs = in.nextInt();
+        int animals = (chickens * 2) + (cows * 4) + (pigs * 4);
+        System.out.printf("Количество ног всех животных = %d", animals);
+        System.out.print("\n Задача 4: \n");
+        System.out.print("prob: ");
+        float prob = in.nextFloat();
+        System.out.print("prize: ");
+        float prize = in.nextFloat();
+        System.out.print("pay: ");
+        float pay = in.nextFloat();
+        String rezult4 = Lr4(prob, prize, pay);
+        System.out.printf(rezult4);
+        System.out.print("\n Задача 5: \n");
+        System.out.print("Введите N: ");
+        int N5 = in.nextInt();
+        System.out.print("Введите a: ");
+        int a5 = in.nextInt();
+        System.out.print("Введите b: ");
+        int b5 = in.nextInt();
+        String rezult5 = Lr5(N5, a5, b5);
+        System.out.println("Требуемое действие: " + rezult5);
+        System.out.print("\n Задача 6: \n");
+        System.out.print("Введите символ: ");
+        String str6 = in.next();
+        char a6 = str6.charAt(0);
+        int rezult6 = Lr6(a6);
+        System.out.println("Значение переданного символа= " + rezult6);
+        System.out.print("\n Задача 7: \n");
+        System.out.print("Введите N: ");
+        int N7 = in.nextInt();
+        int rezult7 = Lr7(N7);
+        System.out.println("Результат =  " + rezult7);
+        System.out.print("\n Задача 8: \n");
+        System.out.print("Введите первую сторону: ");
+        int a8 = in.nextInt();
+        System.out.print("Введите вторую сторону: ");
+        int b8 = in.nextInt();
+        int rezult8 = Lr8(a8, b8);
+        System.out.println("Третья сторона =  " + rezult8);
+        System.out.print("\n Задача 9: \n");
+        System.out.print("Введите количество чисел: ");
+        int a9 = in.nextInt();
+        int rezult9 = Lr9(a9);
+        System.out.println("Сумма кубов введенных чисел =  " + rezult9);
+        System.out.print("\n Задача 10: \n");
+        System.out.print("Введите A: ");
+        int a1 = in.nextInt();
+        System.out.print("Введите B: ");
+        int b1 = in.nextInt();
+        System.out.print("Введите C: ");
+        int c1 = in.nextInt();
+        Lr10(a1, b1, c1);
+        in.close();
+    }
+}
