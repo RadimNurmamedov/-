@@ -1,0 +1,212 @@
+import java.util.Scanner;
+import java.util.Arrays;
+
+class Main2 {
+    // lr1
+    public static String repeat(String str1, int n) {
+        String str2 = "";
+        for (int i = 0; i < str1.length(); i++) {
+            for (int j = 0; j < n; j++) {
+                char simvol = str1.charAt(i);
+                str2 = str2 + simvol;
+            }
+        }
+        return str2;
+    }
+
+    // lr2
+    public static int differenceMaxMin(int[] a) {
+        int max = a[0];
+        int min = a[0];
+        for (int i = 0; i < a.length; i++) {
+            if (a[i] < min)
+                min = a[i];
+            if (a[i] > max)
+                max = a[i];
+        }
+        System.out.printf("Наибольшее число = %d, Наименьшее = %d\n", max, min);
+        return max - min;
+    }
+
+    // lr3
+    public static boolean isAvgWhole(int[] a) {
+        float sum = 0;
+        for (int i = 0; i < a.length; i++) {
+            sum += a[i];
+        }
+        return ((sum / a.length) % 1 == 0);
+    }
+
+    // lr4
+    public static int[] cumulativeSum(int[] a) {
+        int sum = 0;
+        for (int i = 0; i < a.length; i++) {
+            sum += a[i];
+            a[i] = sum;
+        }
+        return a;
+    }
+
+    // lr5
+    public static int getDecimalPlaces(String str1) {
+        if (str1.indexOf(".") >= 0) {
+            return str1.substring(str1.indexOf(".") + 1).length();
+        } else
+            return 0;
+    }
+
+    // lr6
+    public static int Fibonacci(int a) {
+        int fib1 = 0;
+        int fib2 = 0;
+        int fib3 = 1;
+        for (int i = 0; i < a; i++) {
+            fib1 = fib2;
+            fib2 = fib3;
+            fib3 = fib1 + fib2;
+        }
+        return fib3;
+    }
+
+    // lr7
+    public static boolean isValid(String str) {
+        boolean q;
+        q = str.length() == 5 ? true : false;
+        for (int i = 0; i < str.length(); i++)
+            if (!(((int) str.charAt(i) <= 57) && (48 <= (int) str.charAt(i))))
+                q = false;
+        return (q);
+    }
+    // lr8
+
+    public static boolean isStrangePair(String str1, String str2) {
+        if ((str1.charAt(0) == str2.charAt(str2.length() - 1)) && (str2.charAt(0) == str1.charAt(str1.length() - 1)))
+            return true;
+        else
+            return false;
+    }
+    // lr9
+
+    public static boolean isPrefix(String str1, String str2) {
+        int q = 0;
+        for (int i = 0; i < str2.length(); i++) {
+            if (str1.charAt(i) == str2.charAt(i))
+                q++;
+        }
+        if (q == str2.length() - 1)
+            return true;
+        else
+            return false;
+    }
+
+    public static boolean isSuffix(String str1, String str2) {
+        int q = 0;
+        int w = str1.length() - str2.length();
+        for (int i = 1; i < str2.length(); i++) {
+            if (str1.charAt(w + i) == str2.charAt(i))
+                q++;
+        }
+        if (q == str2.length() - 1)
+            return true;
+        else
+            return false;
+    }
+
+    // lr10
+    public static int boxSeq(int a) {
+        int q = 0;
+            if (a % 2 == 0)
+                q = a;
+            else
+                q = a + 2;
+        return q;
+    }
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        System.out.print("Задача 1: \n");
+        System.out.print("Введите слово: ");
+        String str1 = in.next();
+        System.out.print("Введите число: ");
+        int num11 = in.nextInt();
+        System.out.printf("Результат = %s", repeat(str1, num11));
+
+        // -------------------------------------------------------//
+        System.out.print("\n Задача 2: \n");
+        System.out.print("Введите количество чисел: \n");
+        int num21 = in.nextInt();
+        System.out.print("Введите числа(" + num21 + "):\n");
+        int[] mas21 = new int[num21];
+        for (int i = 0; i < num21; i++) {
+            mas21[i] = in.nextInt();
+        }
+        System.out.printf("Результат = %d", differenceMaxMin(mas21));
+        // -------------------------------------------------------//
+
+        System.out.print("\n Задача 3: \n");
+        System.out.print("Введите количество чисел: \n");
+        int num31 = in.nextInt();
+        System.out.print("Введите числа(" + num31 + "):\n");
+        int[] mas31 = new int[num31];
+        for (int i = 0; i < num31; i++) {
+            mas31[i] = in.nextInt();
+        }
+        System.out.printf("Результат = " + isAvgWhole(mas31));
+        // -------------------------------------------------------//
+
+        System.out.print("\n Задача 4: \n");
+        System.out.print("Введите количество чисел: \n");
+        int num41 = in.nextInt();
+        System.out.print("Введите числа(" + num41 + "):\n");
+        int[] mas41 = new int[num41];
+        for (int i = 0; i < num41; i++) {
+            mas41[i] = in.nextInt();
+        }
+        System.out.printf("Результат = " + Arrays.toString(cumulativeSum(mas41)));
+        // -------------------------------------------------------//
+
+        System.out.print("\n Задача 5: \n");
+        System.out.print("Введите число: \n");
+        String str51 = in.next();
+        System.out.printf("Результат = " + (getDecimalPlaces(str51)));
+        // -------------------------------------------------------//
+
+        System.out.print("\n Задача 6: \n");
+        System.out.print("Введите число: \n");
+        int num61 = in.nextInt();
+        System.out.printf("Результат = " + (Fibonacci(num61)));
+        // -------------------------------------------------------//
+
+        System.out.print("\n Задача 7: \n");
+        System.out.print("Введите почтовый индекс: \n");
+        String str71 = in.next();
+        System.out.printf("Результат = " + (isValid(str71)));
+        // -------------------------------------------------------//
+
+        System.out.print("\n Задача 8: \n");
+        System.out.print("Введите первую строку: \n");
+        String str81 = in.next();
+        System.out.print("Введите вторую строку: \n");
+        String str82 = in.next();
+        System.out.printf("Результат = " + (isStrangePair(str81, str82)));
+        // -------------------------------------------------------//
+
+        System.out.print("\n Задача 9: \n");
+        System.out.print("Введите слово: \n");
+        String str91 = in.next();
+        System.out.print("Введите префикс или суффикс: \n");
+        String str92 = in.next();
+        if (str92.charAt(0) == '-') {
+            System.out.printf("Результат = " + (isSuffix(str91, str92)));
+        } else if (str92.charAt(str92.length() - 1) == '-')
+            System.out.printf("Результат = " + (isPrefix(str91, str92)));
+        // -------------------------------------------------------//
+
+        System.out.print("\n Задача 10: \n");
+        System.out.print("Введите число(шаг): \n");
+        int num10 = in.nextInt();
+        System.out.printf("Результат = " + (boxSeq(num10)));
+        // -------------------------------------------------------//
+    }
+
+}
