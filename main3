@@ -1,0 +1,225 @@
+import java.util.Scanner;
+
+class Main3 {
+    // lr1
+    public static int solutions(int a, int b, int c) {
+        float D = b * b - 4 * a * c;
+        if (D < 0)
+            return 0;
+        else if (D == 0)
+            return 1;
+        else
+            return 2;
+    }
+
+    // lr2
+    public static int findZip(String str) {
+            return str.indexOf("zip", str.indexOf("zip") + 1); 
+    }
+
+    // lr3
+
+    public static boolean checkPerfect(int n) {
+        int sum = 0;
+        for (int i = 1; i < n; i++) {
+            if (n % i == 0)
+                sum += i;
+        }
+        if (sum == n)
+            return true;
+        else
+            return false;
+    }
+
+    // lr4
+    public static String flipEndChars(String str) {
+        if (str.length() < 2)
+            return "Несовместимо";
+        if (str.charAt(0) == str.charAt(str.length() - 1))
+            return "Два-это пара.";
+        String str1 = str.charAt(str.length() - 1) + str.substring(1, str.length() - 1) + str.charAt(0);
+        return str1;
+    }
+
+    // lr5
+    public static boolean isValidHexCode(String str) {
+        int a =0;
+        for (int i = 1; i < str.length(); i++) 
+        {
+                if (((((int) str.charAt(i) <= 57) && (48 <= (int) str.charAt(i)))
+                || (((int) str.charAt(i) <= 70) && (65<= (int) str.charAt(i)))) && (int) str.charAt(0) == 35 && str.length()==7)
+                    a++;
+        } 
+        return (a+1== str.length());
+        
+    }
+
+    // lr6
+    public static boolean same(int[] mas1, int[] mas2) {
+        int kol1 = 0;
+        int kol2 = 0;
+        for (int i = 0; i < mas1.length; i++) {
+            int j;
+            for (j = 0; j < i; j++) {
+                if (mas1[i] == mas1[j])
+                    break;
+            }
+            if (i == j)
+                kol1++;
+        }
+        for (int i = 0; i < mas2.length; i++) {
+            int j;
+            for (j = 0; j < i; j++) {
+                if (mas2[i] == mas2[j])
+                    break;
+            }
+            if (i == j)
+                kol2++;
+        }
+        if (kol1 == kol2)
+            return true;
+        else
+            return false;
+    }
+
+    // lr7
+    public static boolean isKaprekar(int k) {
+        String str = "" + (int) k * k;
+        int rez = 0;
+        if (str.length() > 1) {
+            for (int i = 1; i < str.length(); i++) {
+                rez = Integer.parseInt(str.substring(0, i)) + Integer.parseInt(str.substring(i, str.length()));
+                if (rez == k)
+                    return true;
+            }
+        }
+        return false;
+    }
+
+    // lr8
+    public static String longestZero(String str) {
+        int min = 0;
+        int max = 0;
+        int index1 = 0;
+        int index2 = 0;
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == '0') {
+                index1 = i + 1;
+                min++;
+                if (min > max) {
+                    max = min;
+                    index2 = index1;
+                }
+            } else {
+                min = 0;
+            }
+        }
+        return str.substring(index2 - max, index2);
+    }
+
+    // lr9
+    public static int nextPrime(int N) {
+        for (int i = 2; i < N; i++) {
+            if (N % i == 0) {
+                i = 2;
+                N = N + 1;
+            }
+        }
+        return N;
+    }
+
+    // lr10
+    public static boolean rightTriangle(int a, int b, int c) {
+        if (c * c == a * a + b * b || a * a == b * b + c * c || b * b == a * a + c * c)
+            return true;
+        return false;
+    }
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+
+        System.out.print("Задача 1: \n");
+        System.out.print("Введите a: ");
+        int a = in.nextInt();
+        System.out.print("Введите b: ");
+        int b = in.nextInt();
+        System.out.print("Введите c: ");
+        int c = in.nextInt();
+        System.out.println("Результат = " + solutions(a, b, c));
+        // -------------------------------------------------------//
+
+        in.nextLine();
+        System.out.print("\n Задача 2: \n");
+        System.out.print("Введите строку: ");
+        String str21 = in.nextLine();
+        int rez=findZip(str21);
+        System.out.println("Позиция второго вхождения zip =" + rez );
+        //-------------------------------------------------------//
+
+        System.out.print("\n Задача 3: \n");
+        System.out.print("Введите число: \n");
+        int num31 = in.nextInt();
+        System.out.printf("Результат = " + checkPerfect(num31));
+        // -------------------------------------------------------//
+
+        System.out.print("\n Задача 4: \n");
+        System.out.print("Введите строку: \n");
+        String str41 = in.next();
+        System.out.println("Результат = " + flipEndChars(str41));
+        // -------------------------------------------------------//
+
+        System.out.print("\n Задача 5: \n");
+        System.out.print("Введите строку: \n");
+        String str51 = in.next();
+        System.out.println("Результат = " + isValidHexCode(str51));
+        // -------------------------------------------------------//
+
+        System.out.print("\n Задача 6: \n");
+        System.out.print("Введите количество чисел: \n");
+        int num61 = in.nextInt();
+        System.out.print("Введите числа(" + num61 + "):\n");
+        int[] mas61 = new int[num61];
+        for (int i = 0; i < num61; i++) {
+            mas61[i] = in.nextInt();
+        }
+        System.out.print("Введите количество чисел: \n");
+        int num62 = in.nextInt();
+        System.out.print("Введите числа(" + num62 + "):\n");
+        int[] mas62 = new int[num62];
+        for (int i = 0; i < num62; i++) {
+            mas62[i] = in.nextInt();
+        }
+        System.out.println("Результат = " + same(mas61, mas62));
+        // -------------------------------------------------------//
+
+        System.out.print("\n Задача 7: \n");
+        System.out.print("Введите число: \n");
+        int num71 = in.nextInt();
+        System.out.println("Результат = " + (isKaprekar(num71)));
+        // -------------------------------------------------------//
+
+        System.out.print("\n Задача 8: \n");
+        System.out.print("Введите последовательность: \n");
+        String str81 = in.next();
+        System.out.println("Результат = " + longestZero(str81));
+        // -------------------------------------------------------//
+
+        System.out.print("\n Задача 9: \n");
+        System.out.print("Введите число: \n");
+        int num91 = in.nextInt();
+        System.out.println("Результат = " + nextPrime(num91));
+
+        // -------------------------------------------------------//
+
+        System.out.print("\n Задача 10: \n");
+        System.out.print("Введите x: ");
+        int x = in.nextInt();
+        System.out.print("Введите y: ");
+        int y = in.nextInt();
+        System.out.print("Введите z: ");
+        int z = in.nextInt();
+        System.out.println("Результат = " + rightTriangle(x, y, z));
+        // -------------------------------------------------------//
+    }
+
+}
