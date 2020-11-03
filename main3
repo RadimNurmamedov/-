@@ -161,10 +161,11 @@ class Main3 {
         int num31 = in.nextInt();
         System.out.printf("Результат = " + checkPerfect(num31));
         // -------------------------------------------------------//
-
+        
+        in.nextLine();
         System.out.print("\n Задача 4: \n");
         System.out.print("Введите строку: \n");
-        String str41 = in.next();
+        String str41 = in.nextLine();
         System.out.println("Результат = " + flipEndChars(str41));
         // -------------------------------------------------------//
 
