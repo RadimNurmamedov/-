@@ -1,0 +1,366 @@
+import java.util.Scanner;
+
+class Main4 {
+    // lr1
+    public static String essay(int n, int k, String str) {
+        String[] slova  = new String[n];
+        String newstr2 = "";
+        String newstr = "";
+        String stroka = str;
+        int a =0;
+
+       for (int q = 0; q <n; q++) 
+        {
+            slova[q]="";
+        }
+            for (int i = 0; i<stroka.length(); i++) 
+            {
+                if(stroka.charAt(i)!=' ') 
+                {
+                    slova[a]=slova[a]+stroka.charAt(i);
+                }
+                else
+                {
+                    a++;
+                }
+            }
+            newstr=slova[0];
+            newstr2=slova[0];
+        for (int q = 1; q <n; q++) 
+        {
+            if(newstr2.length()+slova[q].length()<=k)
+            {
+                newstr=newstr+" "+slova[q];
+                newstr2=newstr2+" "+slova[q];
+            }
+            else
+            {
+                newstr=newstr+"\n"+slova[q];
+                newstr2=slova[q];
+            }
+        }
+    return newstr;
+    }
+
+    // lr2
+        public static String split(String str) {
+            int first = 0;
+            int second = 0;
+            String newstr = "['";
+            for (int i = 0; i < str.length(); i++) {
+                if (str.charAt(i) == '(') {
+                    newstr += "(";
+                    first++;
+                }
+                if (str.charAt(i) == ')') {
+                    newstr += ")";
+                    second++;
+                }
+                if (first == second) {
+                    if (i+1!= str.length())
+                        newstr += "','";
+                    else
+                        newstr += "']";
+                }
+            }
+            return newstr;
+        }
+    // lr3
+    public static String toCamelCase(String str) 
+    {
+            String newstr="";
+            String a="";
+            for (int i = 0; i < str.length(); i++) 
+            {
+                if (str.charAt(i) != '_')
+                {
+                    newstr+=str.charAt(i); 
+                }
+                else
+                {
+                    i++;
+                    a+=str.charAt(i);
+                    newstr+=a.toUpperCase();
+                    a="";
+                }
+            }
+            return newstr;
+    }
+    public static String toSnakeCase(String str) {
+        String newstr="";
+        String a="";
+            for (int i = 0; i < str.length(); i++) 
+            {
+                if(Character.isUpperCase(str.charAt(i)))
+                {
+                    newstr+='_';
+                    a+=str.charAt(i);
+                    newstr+=a.toLowerCase(); 
+                }
+                else
+                {
+                    newstr+=str.charAt(i); 
+                }
+            }
+        return newstr;
+    }
+    // lr4
+    public static String overTime(double begin, double end,double stavka,double mnoz) {
+        double zarplata = 0;
+        double chasi = 0;
+        double pererabotka = 0;
+        
+        if(end>17)
+        {
+        chasi=17-begin;    
+        pererabotka=end-17;
+        zarplata=chasi*stavka+pererabotka*mnoz*stavka;
+        }
+        else
+        {
+        chasi = Math.abs(begin-end);
+        zarplata=chasi*stavka+pererabotka*mnoz;
+        }
+        return "$" + String.format("%.2f", zarplata);
+    }
+
+    // lr5
+        public static String BMI(String str1, String str2) {
+            double ves = Double.parseDouble(str1.substring(0, str1.indexOf(' ')));
+            if (str1.endsWith("pounds")) {
+                ves = ves * 0.453592;
+            }
+            double rost = Double.parseDouble(str2.substring(0, str2.indexOf(' ')));
+            if (str2.endsWith("inches")) {
+                rost = rost * 0.0254;
+            }
+            double IBM = ves / (rost*rost);
+            if (IBM < 18.5) {
+                return String.format("%.1f", IBM) + "(недостаточный вес)";
+            }
+            else if(IBM<24.9)
+                return String.format("%.1f", IBM)+ "(нормальный вес)";
+            else
+                return String.format("%.1f", IBM)+ "(избыточный вес)";
+        }
+    // lr6
+    public static int bugger(int n) {
+        String str = "" + n;
+        int sum = 0;
+        int s = 0;
+        while (str.length() > 1) {
+            sum = 1;
+            for (int i = 0; i < str.length(); i++) {
+               sum = sum * Integer.parseInt("" +str.charAt(i));
+            }
+            s++;
+            str = "" + sum;
+        }
+        return s;
+    }
+    // lr7
+    public static String toStarShorthand(String str) {
+        if(str=="")
+            return "";
+        char save = str.charAt(0);
+        int kol = 1;
+        String newst = "";
+        for(int i=1;i<str.length();i++)
+        {
+            if(str.charAt(i) != save)
+            {
+                if(kol>1)
+                {
+                    newst += ""+save+ "*"+ kol;
+                }
+                else
+                    newst += ""+save;
+                kol = 1;
+                if(i!=str.length()-1)
+                    save = str.charAt(i);
+                else
+                    newst+=str.charAt(i);
+            }
+            else
+            {
+                kol++;
+                if(i== str.length()-1)
+                {
+                    newst += ""+save+ "*"+ kol;
+                }
+            }
+        }
+        return newst;
+    }
+
+    // lr8
+    public static boolean doesRhyme(String str1, String str2) {
+        String s1 = "", s2 = "";
+        char v = ' ';
+        str1 = str1.substring(str1.lastIndexOf(" ") + 1);
+        for (int i = 0; i < str1.length(); i++) {
+            v = Character.toLowerCase(str1.charAt(i));
+            if (v == 'a' || v == 'e' || v == 'i' || v == 'o' || v == 'u' || v == 'y') {
+                s1 += v;
+            }
+        }
+        str2 = str2.substring(str2.lastIndexOf(" ") + 1);
+        for (int i = 0; i < str2.length(); i++) {
+            v = Character.toLowerCase(str2.charAt(i));
+            if (v == 'a' || v == 'e' || v == 'i' || v == 'o' || v == 'u' || v == 'y') {
+                s2 += v;
+            }
+        }
+        return  s1.equals(s2);
+    }
+
+    // lr9
+    public static boolean trouble(long a, long b) {
+        String str1 = "" + a;
+        String str2 = "" + b;
+        int kol = 0, kol2 = 0;
+        for (int i = 0; i < str1.length(); i++) {
+            if (i != str1.length() - 1) {
+                if (str1.charAt(i) == str1.charAt(i + 1))
+                    kol++;
+                else
+                    kol = 0;
+                if (kol == 2) {
+                    for (int j = 0; j < str2.length(); j++) {
+                        if (str1.charAt(i) == str2.charAt(j)) {
+                            kol2++;
+                        } else {
+                            kol2 = 0;
+                        }
+                        if (kol2 == 2) {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    // lr10
+ public static int countUniqueBooks(String str, String ch) // функция с параметрами
+ {
+   String newstr1 = "";
+   String newstr2 = "";
+   String fin = "";
+   int ind1 = 0, ind2 = 0;
+   while(str.length()!= 0)
+   {
+       if(str.indexOf(ch)!=-1)
+       {
+           newstr1 = str.substring(str.indexOf(ch)+1);
+           ind1 = str.indexOf(ch)+1;
+           str = str.substring(ind1);
+       }
+       if(newstr1.indexOf(ch)!=-1)
+       {
+           newstr2 = newstr1.substring(0,newstr1.indexOf(ch));
+           ind2 = newstr1.indexOf(ch)+1;
+           str = str.substring(ind2);
+       }
+       for(int i=0;i<newstr2.length();i++)
+       {
+           if(fin.indexOf(newstr2.charAt(i))==-1)
+           {
+               fin += newstr2.charAt(i);
+           }
+       }
+   }
+   return fin.length();
+}
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        System.out.print("Введите количество слов: ");
+        int n = in.nextInt();
+        System.out.print("Введите количество символов для строки: ");
+        int k = in.nextInt();
+        System.out.print("Введите строку: ");
+        in.nextLine();
+        String str11 = in.nextLine();
+        if (str11.split(" ").length!=n)
+        System.out.println("Вы ввели "+str11.split(" ").length+" слов. Введите "+n+" слов.");
+        else
+        System.out.println(essay(n,k,str11));
+        //-------------------------------------------------------//
+        System.out.print("\n Задача 2: \n");
+        System.out.print("Введите строку: ");
+        String str21 = in.nextLine();
+        System.out.println("Результат = " + split(str21) );
+        //-------------------------------------------------------//
+        System.out.print("\n Задача 3: \n");
+        System.out.print("Введите строку: ");
+        String str3 = in.nextLine();
+        int camelcase=0;
+        for (int i = 0; i<str3.length(); i++) 
+            {
+                if(str3.charAt(i)=='_') 
+                {
+                    camelcase=1;
+                }
+            }
+        if(camelcase==1)
+        System.out.println("Результат = " + toCamelCase(str3) );
+        else
+        System.out.println("Результат = " + toSnakeCase(str3) );
+        //-------------------------------------------------------//
+        System.out.print("\n Задача 4: \n");
+        System.out.print("Введите начало рабочего дня: ");
+        double begin = in.nextDouble();
+        System.out.print("Введите конец рабочего дня: ");
+        double end = in.nextDouble();
+        System.out.print("Введите почасовую ставку: ");
+        double stavka = in.nextDouble();
+        System.out.print("Введите множитель сверхурочных работ: ");
+        double mnoj= in.nextDouble();
+        System.out.println("Результат = " + overTime(begin, end,stavka,mnoj));
+        // -------------------------------------------------------//
+        in.nextLine();
+        System.out.print("\n Задача 5: \n");
+        System.out.print("Введите Ваш вес: ");
+        String str51 = in.nextLine();
+        System.out.print("Введите Ваш рост: ");
+        String str52 = in.nextLine();
+        System.out.println("Ваш ИМТ= " + BMI(str51,str52));
+        // -------------------------------------------------------//
+        System.out.print("\n Задача 6: \n");
+        System.out.print("Введите число: \n");
+        int num61 = in.nextInt();
+        System.out.println("Результат = " + (bugger(num61)));
+        // -------------------------------------------------------//
+        in.nextLine();
+        System.out.print("\n Задача 7: \n");
+        System.out.print("Введите строку: \n");
+        String str71 = in.nextLine();
+        System.out.println("Результат = " + (toStarShorthand(str71)));
+        // -------------------------------------------------------//
+        in.nextLine();
+        System.out.print("\n Задача 8: \n");
+        System.out.print("Введите первую строку: ");
+        String str81 = in.nextLine();
+        System.out.print("Введите вторую строку: ");
+        String str82 = in.nextLine();
+        System.out.println("Результат = " + doesRhyme(str81,str82));
+        // -------------------------------------------------------//
+        System.out.print("\n Задача 9: \n");
+        System.out.print("Введите первое число: \n");
+        long num91 = in.nextLong();
+        System.out.print("Введите второе число: \n");
+        long num92 = in.nextLong();
+        System.out.println("Результат = " + trouble(num91,num92));
+        // -------------------------------------------------------//
+        in.nextLine();
+        System.out.print("\n Задача 10: \n");
+        System.out.print("Введите первую строку: ");
+        String str10 = in.nextLine();
+        System.out.print("Введите вторую строку: ");
+        String str101 = in.nextLine();
+        System.out.println("Результат = " + countUniqueBooks(str10,str101));
+        // -------------------------------------------------------//
+    }
+
+}
